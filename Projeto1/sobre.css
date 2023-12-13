@@ -67,7 +67,18 @@ body {
 }
 
 .container p {
-  font-size: 30px;
+  font-size: 28px;
   text-align: center;
   padding: 30px;
+}
+
+.container a {
+  color: #696969;
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+.container a:hover {
+  text-decoration: none;
+  color: #969696;
 }

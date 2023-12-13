@@ -6,6 +6,10 @@ const formattedDay = (day) => {
 };
 
 function preencherCalendario() {
+  localStorage.setItem('2023-12-05', 'https://cdn2.thecatapi.com/images/d62.jpg');
+  localStorage.setItem('2023-12-07', 'https://cdn2.thecatapi.com/images/dkl.jpg');
+  localStorage.setItem('2023-12-10', 'https://cdn2.thecatapi.com/images/8on.jpg');
+
   try {
     for (let day = 1; day <= totalDays; day++) {
       const formattedDate = `2023-12-${formattedDay(day)}`;
@@ -45,11 +49,12 @@ function preencherCalendario() {
 document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.querySelector('.loading-screen');
   const calendar = document.querySelector('.calendar');
+  calendar.style.display = 'none';
 
   setTimeout(() => {
     loadingScreen.style.display = 'none';
     calendar.style.display = 'grid';
-  }, 1000);
+  }, 1500);
 
   preencherCalendario();
 });
