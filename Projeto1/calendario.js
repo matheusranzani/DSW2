@@ -5,30 +5,40 @@ const formattedDay = (day) => {
   return day < 10 ? `0${day}` : day.toString();
 };
 
-async function preencherCalendario() {
+function preencherCalendario() {
   try {
     for (let day = 1; day <= totalDays; day++) {
-      const response = await axios.get('https://api.thecatapi.com/v1/images/search');
-      const imageUrl = response.data[0].url;
+      const formattedDate = `2023-12-${formattedDay(day)}`;
+      const imageUrl = localStorage.getItem(formattedDate);
 
       const container = document.createElement('div');
       container.classList.add('calendar-item');
-
-      const img = document.createElement('img');
-      img.src = imageUrl;
-      // img.alt = `Gato do dia ${day}`;
-      img.classList.add('cat-image');
 
       const dayNumber = document.createElement('div');
       dayNumber.classList.add('day-number');
       dayNumber.textContent = formattedDay(day);
 
-      container.appendChild(img);
-      container.appendChild(dayNumber);
+      if (imageUrl) {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.classList.add('cat-image');
+
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.target = '_blank';
+        link.appendChild(img);
+
+        container.appendChild(link);
+        container.appendChild(dayNumber);
+      } else {
+        container.appendChild(dayNumber);
+        dayNumber.style.pointerEvents = 'none';
+      }
+
       calendarElement.appendChild(container);
     }
   } catch (error) {
-    console.error('Erro ao buscar os dados da API:', error);
+    console.error('Erro ao buscar os dados do localStorage:', error);
   }
 }
 
@@ -39,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     loadingScreen.style.display = 'none';
     calendar.style.display = 'grid';
-  }, 9000);
+  }, 1000);
 
   preencherCalendario();
 });
