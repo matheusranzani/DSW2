@@ -5,6 +5,38 @@ const formattedDay = (day) => {
   return day < 10 ? `0${day}` : day.toString();
 };
 
+function showCatImage(imageUrl, day) {
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content');
+
+  const img = document.createElement('img');
+  img.src = imageUrl;
+  img.classList.add('cat-image-modal');
+
+  const text = document.createElement('div');
+  text.classList.add('modal-text');
+  text.textContent = `Gato do dia ${day} de dezembro de 2023`;
+
+  modalContent.appendChild(img);
+  modalContent.appendChild(text);
+  modal.appendChild(modalContent);
+
+  document.body.appendChild(modal);
+
+  modal.onclick = () => {
+    modal.remove();
+  };
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      modal.remove();
+    }
+  });
+}
+
 function preencherCalendario() {
   localStorage.setItem('2023-12-05', 'https://cdn2.thecatapi.com/images/d62.jpg');
   localStorage.setItem('2023-12-07', 'https://cdn2.thecatapi.com/images/dkl.jpg');
@@ -22,20 +54,19 @@ function preencherCalendario() {
       dayNumber.classList.add('day-number');
       dayNumber.textContent = formattedDay(day);
 
+      container.appendChild(dayNumber);
+
       if (imageUrl) {
         const img = document.createElement('img');
         img.src = imageUrl;
         img.classList.add('cat-image');
 
-        const link = document.createElement('a');
-        link.href = imageUrl;
-        link.target = '_blank';
-        link.appendChild(img);
+        img.onclick = () => {
+          showCatImage(imageUrl, day);
+        };
 
-        container.appendChild(link);
-        container.appendChild(dayNumber);
+        container.appendChild(img);
       } else {
-        container.appendChild(dayNumber);
         dayNumber.style.pointerEvents = 'none';
       }
 
@@ -45,6 +76,7 @@ function preencherCalendario() {
     console.error('Erro ao buscar os dados do localStorage:', error);
   }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.querySelector('.loading-screen');
