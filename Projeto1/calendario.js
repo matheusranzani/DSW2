@@ -37,9 +37,9 @@ function showCatImage(imageUrl, day) {
   });
 }
 
-function preencherCalendario() {
-  localStorage.setItem('2023-12-05', 'https://cdn2.thecatapi.com/images/d62.jpg');
-  localStorage.setItem('2023-12-07', 'https://cdn2.thecatapi.com/images/dkl.jpg');
+function createCalendar() {
+  localStorage.setItem('2023-12-05', 'https://cdn2.thecatapi.com/images/9f8.jpg');
+  localStorage.setItem('2023-12-07', 'https://cdn2.thecatapi.com/images/MTU2NjE0Nw.gif');
   localStorage.setItem('2023-12-10', 'https://cdn2.thecatapi.com/images/8on.jpg');
 
   try {
@@ -77,7 +77,6 @@ function preencherCalendario() {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.querySelector('.loading-screen');
   const calendar = document.querySelector('.calendar');
@@ -88,5 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
     calendar.style.display = 'grid';
   }, 1500);
 
-  preencherCalendario();
+  createCalendar();
 });
