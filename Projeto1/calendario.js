@@ -77,7 +77,6 @@ function preencherCalendario() {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.querySelector('.loading-screen');
   const calendar = document.querySelector('.calendar');
