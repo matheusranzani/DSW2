@@ -30,7 +30,7 @@ function showCatImage(imageUrl, day) {
     modal.remove();
   };
 
-  document.addEventListener('keydown', function(event) {
+  document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       modal.remove();
     }
