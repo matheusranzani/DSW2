@@ -1,4 +1,5 @@
-# Projetos desenvolvidos durante a disciplina de Desenvolvimento de Software para Web 2 (2023/2)
+# DSW2
+Projetos desenvolvidos durante a disciplina de Desenvolvimento de Software para Web 2 (2023/2)
 
 ## Integrantes do grupo:
 - Gabriel Ripper de Mendonça Furtado, 804070
