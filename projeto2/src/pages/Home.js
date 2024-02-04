@@ -143,6 +143,8 @@ const Home = () => {
   const [isCatGeneratedForToday, setIsCatGeneratedForToday] = useState(false);
 
   useEffect(() => {
+    document.title = 'Home - Que gato você é hoje?';
+
     if (checkTodaysCat()) {
       setIsCatGeneratedForToday(true);
     }

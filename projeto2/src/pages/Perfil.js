@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Perfil = () => {
+  useEffect(() => {
+    document.title = 'Perfil - Que gato você é hoje?';
+  }, []);
+
   return(
     <p>Perfil</p>
   )
