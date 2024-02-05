@@ -19,7 +19,6 @@ const StyledContainer = styled.div`
   position: relative;
 
   h1 {
-    padding: 16px;
     font-size: 50px;
     margin: 90px 0px 50px 0px;
   }
