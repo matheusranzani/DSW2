@@ -7,5 +7,5 @@ Projetos desenvolvidos durante a disciplina de Desenvolvimento de Software para 
 - Matheus Goulart Ranzani, 800278
 
 ## Projetos
-- [Projeto 1](https://github.com/matheusranzani/DSW2/tree/main/Projeto1) (HTML/CSS/JavaScript)
-- [Projeto 2]() (React + Integração com back-end)
+- [Projeto 1](https://github.com/matheusranzani/DSW2/tree/main/projeto1) (HTML/CSS/JavaScript)
+- [Projeto 2](https://github.com/matheusranzani/DSW2/tree/main/projeto2) (React + Integração com back-end)
