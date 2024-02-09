@@ -43,9 +43,11 @@ const useCalendar = () => {
       setTimeout(() => {
         const tempCalendarData = [];
 
-        localStorage.setItem('2024-02-05', 'https://cdn2.thecatapi.com/images/9f8.jpg');
-        localStorage.setItem('2024-02-07', 'https://cdn2.thecatapi.com/images/MTU2NjE0Nw.gif');
-        localStorage.setItem('2024-02-10', 'https://cdn2.thecatapi.com/images/8on.jpg');
+        localStorage.setItem('2024-02-02', 'https://cdn2.thecatapi.com/images/9f8.jpg');
+        localStorage.setItem('2024-02-04', 'https://cdn2.thecatapi.com/images/d55E_KMKZ.jpg');
+        localStorage.setItem('2024-02-05', 'https://cdn2.thecatapi.com/images/at2.jpg');
+        localStorage.setItem('2024-02-06', 'https://cdn2.thecatapi.com/images/MTU2NjE0Nw.gif');
+        localStorage.setItem('2024-02-08', 'https://cdn2.thecatapi.com/images/8on.jpg');
 
         try {
           for (let day = 1; day <= totalDays; day++) {
