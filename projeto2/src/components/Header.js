@@ -1,14 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useUser } from '../hooks/useUser';
 
 const StyledHeader = styled.header`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 80px;
   background-color: #000;
 `;
+
+const StyledLeftContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledRightContainer = styled.div``;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -49,20 +58,39 @@ const StyledResponsiveHeader = styled.div`
 `;
 
 const Header = () => {
+  const { user, setUser } = useUser();
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
-      <StyledResponsiveHeader>
-        <StyledHeader>
-            <StyledLink to="/">
-              <StyledParagraph>Início</StyledParagraph>
-            </StyledLink>
+    <StyledResponsiveHeader>
+      <StyledHeader>
+        <StyledLeftContainer>
+          <StyledLink to="/">
+            <StyledParagraph>Início</StyledParagraph>
+          </StyledLink>
+          {user && ( // Verifica se o usuário está logado
             <StyledLink to="/perfil">
-              <StyledParagraph>Perfil</StyledParagraph>
+              <StyledParagraph>Perfil</StyledParagraph> {/* Adiciona o link para a página de perfil */}
             </StyledLink>
-            <StyledLink to="/sobre">
-              <StyledParagraph>Sobre</StyledParagraph>
+          )}
+          <StyledLink to="/sobre">
+            <StyledParagraph>Sobre</StyledParagraph>
+          </StyledLink>
+        </StyledLeftContainer>
+        <StyledRightContainer>
+          {user ? (
+            <StyledParagraph onClick={handleLogout}>Sair</StyledParagraph>
+          ) : (
+            <StyledLink to="/login">
+              <StyledParagraph>Login</StyledParagraph>
             </StyledLink>
-        </StyledHeader>
-      </StyledResponsiveHeader>
+          )}
+        </StyledRightContainer>
+      </StyledHeader>
+    </StyledResponsiveHeader>
   );
 };
 

@@ -212,7 +212,7 @@ const Perfil = () => {
           {showModal && (
             <ModalOverlay onClick={handleCloseModal}>
               <ModalContent>
-                <CatImageModal src={modalImageUrl} alt={`Gato do dia ${modalDay}`} />
+                <CatImageModal src={modalImageUrl} />
                 <ModalText>Gato do dia {modalDay} de fevereiro de 2024</ModalText>
               </ModalContent>
             </ModalOverlay>

@@ -4,6 +4,7 @@ import useCatImage from '../hooks/useCatImage';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Main from '../components/Main';
+import { useUser } from '../hooks/useUser';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -17,11 +18,11 @@ const StyledContainer = styled.div`
   box-sizing: border-box;
   min-height: calc(100vh - 80px);
   position: relative;
+`;
 
-  h1 {
-    font-size: 50px;
-    margin: 90px 0px 50px 0px;
-  }
+const StyledH1 = styled.h1`
+  font-size: 50px;
+  margin: 90px 0px 50px 0px;
 `;
 
 const StyledCatContainer = styled.div`
@@ -137,6 +138,7 @@ const StyledResponsiveHome = styled.div`
 `;
 
 const Home = () => {
+  const { user } = useUser();
   const [catImage, generateCat, loading, checkTodaysCat] = useCatImage();
   const [showInitialText, setShowInitialText] = useState(true);
   const [isCatGeneratedForToday, setIsCatGeneratedForToday] = useState(false);
@@ -159,10 +161,11 @@ const Home = () => {
   };
 
   return (
-      <StyledResponsiveHome>
-        <Main>
-          <StyledContainer>
-            <h1>QUE GATO VOCÊ É HOJE?</h1>
+    <StyledResponsiveHome>
+      <Main>
+        <StyledContainer>
+          <StyledH1>QUE GATO VOCÊ É HOJE?</StyledH1>
+          {user ? (
             <StyledCatContainer>
               {showInitialText && !isCatGeneratedForToday && !loading && (
                 <StyledImageText>
@@ -181,15 +184,24 @@ const Home = () => {
                 </StyledImageText>
               )}
             </StyledCatContainer>
-            <StyledButton
-              onClick={handleDescobrirClick}
-              disabled={isCatGeneratedForToday}
-            >
-              DESCOBRIR
-            </StyledButton>
-          </StyledContainer>
-        </Main>
-      </StyledResponsiveHome>
+          ) : (
+            <StyledCatContainer>
+              <StyledImageText>
+                Você precisa estar logado para gerar um gato!{' '}
+                <StyledLink to="/login">Faça login</StyledLink> para continuar.
+              </StyledImageText>
+            </StyledCatContainer>
+          )}
+
+          <StyledButton
+            onClick={handleDescobrirClick}
+            disabled={!user || isCatGeneratedForToday}
+          >
+            DESCOBRIR
+          </StyledButton>
+        </StyledContainer>
+      </Main>
+    </StyledResponsiveHome>
   );
 };
 

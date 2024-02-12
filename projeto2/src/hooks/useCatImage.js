@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import api from '../service/api';
 
 const useCatImage = () => {
   const [catImage, setCatImage] = useState(null);
@@ -16,9 +17,9 @@ const useCatImage = () => {
       const { data } = await axios.get('https://api.thecatapi.com/v1/images/search');
       const imageUrl = data[0].url;
 
-      setCatImage(imageUrl);
+      await api.post('/user/generateCat', { imageUrl });
 
-      localStorage.setItem(getTodaysFormattedDate(), imageUrl);
+      setCatImage(imageUrl);
     } catch (error) {
       console.error('Erro ao buscar os dados da API:', error);
     } finally {
